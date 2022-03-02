@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
-
+use App\Http\Controllers\LogoutController;
 
 
 
@@ -12,6 +12,24 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/logout', [LogoutController::class, 'logout']);
 
-Route::GET('/work', [WorkController::class, 'index']);
-Route::POST('/work/in', [WorkController::class, 'index']);
+
+
+//打刻ページ
+Route::get('/work', [WorkController::class, 'index'])->middleware('auth');
+//勤務開始打刻
+Route::post('/work_in', [WorkController::class, 'work_in'])->middleware('auth');
+
+
+
+//勤務終了を送信
+Route::post('/end', [WorkController::class, 'end'])->middleware('auth');
+
+//休憩開始
+Route::post('/reststart', [WorkController::class, 'reststart'])->middleware('auth');
+
+//休憩終了
+Route::post('/restend', [WorkController::class, 'restend'])->middleware('auth');
+
+
