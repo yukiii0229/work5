@@ -17,25 +17,27 @@ class WorkController extends Controller
         if (Auth::attempt(['name' => $name])){
             $name = User::user()->name;
         }
+       
         return view('work');
     }
-//打刻ページ開始
+    
+// 打刻ページ開始
     public function work_in()
   {
-    $user = new User();
     $user = Auth::user();
+    
 
 
     $oldTimestamp = work::where('user_id', $user->id)->latest()->first();
         if ($oldTimestamp) {
-            $oldTimestampPunchIn = new Carbon($oldTimestamp->work_in);
-            $oldTimestampDay = $oldTimestampPunchIn->startOfDay();
+            $oldTimeStampStart= new Carbon($oldTimestamp->work_in);
+            $oldTimestampDay = $oldTimeStampStart->startOfDay();
         }
         $newTimestampDay = Carbon::today();
         /**
          * 日付を比較する。同日付の出勤打刻で、かつ直前のTimestampの退勤打刻がされていない場合エラーを吐き出す。
          */
-        if (($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->work_Out))){
+        if (($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->work_out))){
             return redirect()->back()->with('error', 'すでに出勤打刻がされています');
         }
         $timestamp = work::create([
@@ -49,7 +51,7 @@ class WorkController extends Controller
     public function work_out()
     {
         $user = Auth::user();
-        $timestamp = Timestamp::where('user_id', $user->id)->latest()->first();
+        $timestamp = work::where('user_id', $user->id)->latest()->first();
 
         if( !empty($timestamp->punchOut)) {
             return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');

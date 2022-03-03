@@ -72,28 +72,28 @@
         @csrf
         <button type="submit" class="btn btn-end">勤務終了</button>
         <input type='hidden' id="user_id" name="workout" value="{{'work_out'}}">
-        　
+        
       </form>
     </div>
 
     <div class="main-item">
     <!----------休憩開始------------>
-    <div class="main-item_second">
+    <!-- <div class="main-item_second">
       <form action="/break_in" method="POST">
         @csrf
         <button type="submit" class="btn btn-start">休憩開始</button>
         <input type='hidden' id="job_id" name="break_in" value="{{'break_in'}}">
       </form>
     </div>
-    
+     -->
         <!----------休憩終了------------>
-        <div class="main-item_second">
+        <!-- <div class="main-item_second">
       <form action="/break_out" method="POST">
         @csrf
         <button type="submit" class="btn btn-end">休憩終了</button>
         <input type='hidden' id="job_id" name="break_out" value="{{'break_out'}}">
       </form>
-    </div>
+    </div> -->
 
   </div>
 

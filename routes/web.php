@@ -17,19 +17,17 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 
 //打刻ページ
-Route::get('/work', [WorkController::class, 'index'])->middleware('auth');
+Route::GET('/work', [WorkController::class, 'index'])->middleware('auth');
 //勤務開始打刻
 Route::post('/work_in', [WorkController::class, 'work_in'])->middleware('auth');
 
 
 
 //勤務終了を送信
-Route::post('/end', [WorkController::class, 'end'])->middleware('auth');
+Route::post('/work_out', [WorkController::class, 'work_out'])->middleware('auth');
 
 //休憩開始
-Route::post('/reststart', [WorkController::class, 'reststart'])->middleware('auth');
+// Route::post('/reststart', [WorkController::class, 'reststart'])->middleware('auth');
 
 //休憩終了
-Route::post('/restend', [WorkController::class, 'restend'])->middleware('auth');
-
-
+// Route::post('/restend', [WorkController::class, 'restend'])->middleware('auth');
