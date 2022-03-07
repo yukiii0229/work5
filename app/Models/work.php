@@ -16,7 +16,7 @@ class Work extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
-    public function rest(){
-        return $this->hasMany("App\Models\brake");
-    }
+    // public function rest(){
+    //     return $this->hasMany("App\Models\brake");
+    // }
 }
