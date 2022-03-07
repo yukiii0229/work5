@@ -51,7 +51,7 @@ class WorkController extends Controller
             'date' => Carbon::today(), //今日の日付
             "work_out" => null,
         ]);
-        return view ("work_in");
+        return request ("work_in");
         
     }
 
