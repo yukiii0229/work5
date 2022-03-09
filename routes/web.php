@@ -19,11 +19,11 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 //打刻ページ
 Route::GET('/work', [WorkController::class, 'index'])->middleware('auth');
 //勤務開始打刻
-Route::post('/work_in', [WorkController::class, 'work_in'])->middleware('auth');
-
-
+Route::GET('/work_in', [WorkController::class, 'work_in2'])->middleware('auth');
+Route::post('/work_in', [WorkController::class, 'work_in'])->name('work_in');;
 
 //勤務終了を送信
+Route::GET('/work_end', [WorkController::class, 'work_end'])->middleware('auth');
 Route::post('/work_out', [WorkController::class, 'work_out'])->middleware('auth');
 
 //休憩開始

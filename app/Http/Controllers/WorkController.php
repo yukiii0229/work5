@@ -51,24 +51,40 @@ class WorkController extends Controller
             'date' => Carbon::today(), //今日の日付
             "work_out" => null,
         ]);
-        return  redirect()->action([workController::class, 'work_in']);
+        return  redirect('work_in');
         
+
+    }
+    public function work_in2(Request $request)
+    {
+        $name = $request->name;
+        if (Auth::attempt(['name' => $name])){
+            $name = User::user()->name;
+        }
+       
+        return view('work_in');
     }
 
-    // public function work_out()
-    // {
-    //     $user = Auth::user();
-    //     $timestamp = works::where('user_id', $user->id)->latest()->first();
+    public function work_out(Request $request)
+    {
+        $user = Auth::user();
+        $timestamp = work::where('user_id', $user->id)->latest();
 
-    //     if( !empty($timestamp->punchOut)) {
-    //         return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');
-    //     }
-    //     $timestamp->update([
-    //         'work_out' => Carbon::now()
-    //     ]);
 
-    //     return redirect()->back()->with('my_status', '退勤打刻が完了しました');
-    // }
+        if( !empty($timestamp->punchOut)) {
+            return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');
+        }
+        $timestamp->update([
+            'work_out' => Carbon::now()
+        ]);
+
+
+        return  redirect('work_end');
+    }
+    public function work_end()
+    {
+        return view('work_end');
+    }
 }
 
 

@@ -53,8 +53,11 @@
   </nav>
   <div class="main-item">
     <!----------勤務開始------------>
-    
+    @foreach ($errors->all() as $error)
+  <li>{{$error}}</li>
+  @endforeach
     <div class="main-item_tag">
+      
     <form action="/work_in" method="POST">
         @csrf 
         <button type="submit" class="btn btn-start">勤務開始</button>
