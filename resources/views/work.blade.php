@@ -53,8 +53,10 @@
   </nav>
   <div class="main-item">
     <!----------勤務開始------------>
+    
     <div class="main-item_tag">
-        @csrf
+    <form action="/work_in" method="POST">
+        @csrf 
         <button type="submit" class="btn btn-start">勤務開始</button>
         <input type='hidden' id="user_id" name="work_in" value="{{'work_in'}}">
       </form>

@@ -19,7 +19,7 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 //打刻ページ
 Route::GET('/work', [WorkController::class, 'index'])->middleware('auth');
 //勤務開始打刻
-Route::post('/work_in', [WorkController::class, 'work_in']);
+Route::post('/work_in', [WorkController::class, 'work_in'])->middleware('auth');
 
 
 

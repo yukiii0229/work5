@@ -44,14 +44,14 @@ class WorkController extends Controller
          */
         if (($oldTimestamp)&&($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->work_out))){
             return redirect()->back()->with('error', 'すでに出勤打刻がされています');
-        }
+             }
         $timestamp = work::create([
             'user_id' => $user->id,
             'work_in' => Carbon::now(), //現在時刻
             'date' => Carbon::today(), //今日の日付
             "work_out" => null,
         ]);
-        return view ("work_in");
+        return  redirect()->action([workController::class, 'work_in']);
         
     }
 
