@@ -66,7 +66,7 @@
       <form action="/break_in" method="POST">
         @csrf
         <button type="submit" class="btn btn-start">休憩開始</button>
-        <input type='hidden' id="job_id" name="break_in" value="{{'break_in'}}">
+        <input type='hidden' id="brake_id" name="break_in" value="{{'break_in'}}">
       </form>
     </div>
   </div>

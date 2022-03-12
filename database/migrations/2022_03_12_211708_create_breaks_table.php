@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBrakesTable extends Migration
+class CreateBreaksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateBrakesTable extends Migration
      */
     public function up()
     {
-        Schema::create('brakes', function (Blueprint $table) {
+        Schema::create('breaks', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('brake_in')->nullable(false);
-            $table->timestamp('brake_out')->nullable();
+            $table->timestamp('break_in')->nullable(false);
+            $table->timestamp('break_out')->nullable();
             $table->foreignId('work_id')->constrained('works');
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
-         });
+        });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateBrakesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brakes');
+        Schema::dropIfExists('breaks');
     }
 }

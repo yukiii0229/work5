@@ -27,7 +27,7 @@ Route::GET('/work_end', [WorkController::class, 'work_end'])->middleware('auth')
 Route::post('/work_out', [WorkController::class, 'work_out'])->middleware('auth');
 
 //休憩開始
-// Route::post('/reststart', [WorkController::class, 'reststart'])->middleware('auth');
+Route::post('/break_in', [WorkController::class, 'break_in'])->middleware('auth');
 
 //休憩終了
-// Route::post('/restend', [WorkController::class, 'restend'])->middleware('auth');
+Route::GET('/break_out', [WorkController::class, 'break_out'])->middleware('auth');
