@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\brake;
+use App\Models\rest;
 use App\Models\work;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -76,12 +76,9 @@ class WorkController extends Controller
         if( !empty($timestamp->punchOut)) {
             return redirect()->back()->with('error', '既に退勤の打刻がされているか、出勤打刻されていません');
         }
-        Log::info('アップデート前');
-
         $timestamp->update([
             'work_out' => Carbon::now()
         ]);
-        Log::info('最後');
 
         return  redirect('work_end');
     }
@@ -91,26 +88,18 @@ class WorkController extends Controller
     }
 
 
-    public function break_in()
+    public function break_in(Request $request)
     {
 
-    //$rest = new Rest();
-    // Log::info('break_in最初');
-
-
     $break = Auth::user();
-    $work =work::where('user_id', $user_id)
-    ->where('date', Carbon::today())->latest();
-
-
-    // Log::info('work_id='+ $work->id);
-    $break_in = brake::create([
+    $user= Auth::user();
+    $work =work::where('user_id', $user->id)
+    ->where('date', Carbon::today())->latest()->first();
+    $break_in = rest::create([
         'work_id' => $work->id,
-        'break_in' => Carbon::now(),
-        'break_out' => null,
+        'rest_in' => Carbon::now(),
+        'rest_out' => null,
     ]);
-    // Log::info('break_in最後');
-
 
     return redirect('break_out');
 }
@@ -118,27 +107,29 @@ class WorkController extends Controller
     public function break_out()
 
     {
-        return view('break_out');
+          return view('break_out');
     }
 
-    public function break_out2()
+    public function break_out2(Request $request)
     {
-
-    //$rest = new Rest();
+    // $rest_id = rest::id();
     $break = Auth::user();
-    $break_id = brake::where('work_id', $break->id)->latest();
+    $break_out = rest::where('work_id', $break->id)->latest();
     $break_out->update([
-        'break_out' => Carbon::now()
-    ]);
-    return redirect('break_out');
+        'rest_out' => Carbon::now()
+        ]);
+    return redirect('work_in');
 }
-
 
     public function work_out1()
     {
         return view('work_out');
     }
+
     
+    
+
+
 }
 
 
