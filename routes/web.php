@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ListController;
 
 
 
@@ -34,4 +35,5 @@ Route::POST('/break_out', [WorkController::class, 'break_out2'])->middleware('au
 
 
 //リスト一覧
-
+Route::GET('/list', [ListController::class, 'create'])->middleware('auth');
+Route::POST('/list', [ListController::class, 'work'])->middleware('auth');

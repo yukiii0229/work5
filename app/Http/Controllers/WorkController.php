@@ -99,6 +99,7 @@ class WorkController extends Controller
         'work_id' => $work->id,
         'rest_in' => Carbon::now(),
         'rest_out' => null,
+        'rest_time' => null,
     ]);
 
     return redirect('break_out');
@@ -114,10 +115,21 @@ class WorkController extends Controller
     {
     // $rest_id = rest::id();
     $break = Auth::user();
-    $break_out = rest::where('work_id', $break->id)->latest();
+    $break_out = rest::where('work_id', $break->id)->latest()->first();
+
+    // $users = DB::table('rests')
+    //         ->join('contacts', 'users.id', '=', 'contacts.user_id')
+    //         ->join('orders', 'users.id', '=', 'orders.user_id')
+    //         ->select('users.*', 'contacts.phone', 'orders.price')
+    //         ->get();
+
+
     $break_out->update([
         'rest_out' => Carbon::now()
+
         ]);
+
+    
     return redirect('work_in');
 }
 
