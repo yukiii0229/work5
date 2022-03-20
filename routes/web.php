@@ -15,9 +15,12 @@ require __DIR__.'/auth.php';
 
 Route::get('/logout', [LogoutController::class, 'logout']);
 
-
+Route::get('/', function () {
+    return view('auth.register');  // 変更：welcome → top
+    });
 
 //打刻ページ
+
 Route::GET('/work', [WorkController::class, 'index'])->middleware('auth');
 //勤務開始打刻
 Route::GET('/work_in', [WorkController::class, 'work_in2'])->middleware('auth');
