@@ -16,7 +16,27 @@ class ListController extends Controller
 {
     public function create(Request $request)
     {
+        $break = Auth::user();
+        $dete = Auth::user();;
+        $work = work::all()->first();
+        $rest = rest::all()->first();
 
+
+        $rest_time = DB::table('works');
+        $DATE = date("Y-m-d");
+        $work_in = $DATE."work_in";
+        $work_out = $DATE."work_out";
+        $work_time = (strtotime($work_out) - strtotime($work_in))/60;
+
+
+
+
+
+
+
+
+
+        
     //     $break = Auth::user();
     // $break_out = rest::where('work_id', $break->id)->latest()->first();
     // $user = Auth::user();
