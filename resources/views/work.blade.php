@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>work</title>
     <style>
-        .header {
-    background: #FFFFFF;
-  }
+
   .header-nav {
     display: block;
   }
@@ -16,40 +14,57 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
+    font-size:20px;
   }
   .header-nav_item {
     padding-right: 15px;
   }
-  .main {
-    background: #EEEEEE;
-    height: 500px;
-    font-size: 20px;
-  }
+
   .main-item {
+    /* display: flex; */
+    /* justify-content: center; */
+  } */
+  /* .main-item_second {
     display: flex;
-    justify-content: center;
-  }
-  .main-item_second {
-    display: flex;
-    justify-content: center;
-  }
+    /* justify-content: center; */
+  /* } */
   .main-item_tag {
     padding-left: 80px;
   }
   .main-item_second {
     padding-left: 80px;
   }
+  .header-nav_list>li:first-of-type{
+    margin-right: auto;
+}
+.btn{
+  width:40%;
+  height:200px;
+  display: flex;
+  margin:50px;
+  float: left;
+  display: block;
+  font-weight:bold;
+  font-size:20px;
+}
+
 
 
     </style>
-</head>
+
+
 <body>
+  <head>
   <nav class="header-nav">
     <ul class="header-nav_list">
+    <li class="header-nav_item">Atte</li>
+    <li class="header-nav_item"><a href="/work">ホーム</a></li>
       <li class="header-nav_item"><a href="/list">日付一覧</a></li>
       <li class="header-nav_item"><a href="{{route('logout')}}">ログアウト</a></li>
     </ul>
   </nav>
+</head>
+
   <div class="main-item">
     <!----------勤務開始------------>
     @foreach ($errors->all() as $error)
@@ -62,6 +77,9 @@
         <button type="submit" class="btn btn-start">勤務開始</button>
         <input type='hidden' id="user_id" name="work_in" value="{{'work_in'}}">
       </form>
+      <button type="submit" class="btn btn_end">勤務終了</button>
+      <button type="submit" class="btn btn-start">休憩開始</button>
+      <button type="submit" class="btn btn-start">休憩終了</button>
     </div>
 
 

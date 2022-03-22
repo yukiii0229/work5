@@ -16,22 +16,10 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
+    font-size:20px;
   }
   .header-nav_item {
     padding-right: 15px;
-  }
-  .main {
-    background: #EEEEEE;
-    height: 500px;
-    font-size: 20px;
-  }
-  .main-item {
-    display: flex;
-    justify-content: center;
-  }
-  .main-item_second {
-    display: flex;
-    justify-content: center;
   }
   .main-item_tag {
     padding-left: 80px;
@@ -39,12 +27,37 @@
   .main-item_second {
     padding-left: 80px;
   }
-
-
+  .header-nav_list>li:first-of-type{
+    margin-right: auto;
+  }
+  .btn{
+  width:40%;
+  height:200px;
+  display: flex;
+  margin:50px;
+  float: left;
+  display: block;
+  font-weight:bold;
+  font-size:20px;
+}
+.btn-start1{
+  opacity: 0.5;
+}
     </style>
-</head>
+
 <body>
+<nav class="header-nav">
+    <ul class="header-nav_list">
+    <li class="header-nav_item">Atte</li>
+    <li class="header-nav_item"><a href="{{route('work_in')}}">ホーム</a></li>
+      <li class="header-nav_item"><a href="{{route('work_in')}}">日付一覧</a></li>
+      <li class="header-nav_item"><a href="{{route('work_in')}}">ログアウト</a></li>
+    </ul>
+  </nav>
   <div class="main-item">
+  <button type="submit" class="btn btn-start1">勤務開始</button>
+  <button type="submit" class="btn btn-start1">勤務終了</button>
+  <button type="submit" class="btn btn-start1">休憩開始</button>
         <!----------休憩終了------------>
          <div class="main-item_second">
       <form action="/break_out" method="POST">
@@ -54,6 +67,7 @@
       </form>
     </div> 
   </div>
+
 
 
 </body>

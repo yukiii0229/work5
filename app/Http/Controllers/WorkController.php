@@ -124,11 +124,6 @@ class WorkController extends Controller
     //         ->get();
 
 
-    $break_out->update([
-        'rest_out' => Carbon::now()
-
-        ]);
-
     
     return redirect('work_in');
 }

@@ -16,6 +16,7 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
+    font-size:20px;
   }
   .header-nav_item {
     padding-right: 15px;
@@ -29,22 +30,38 @@
     display: flex;
     justify-content: center;
   }
-  .main-item_second {
-    display: flex;
-    justify-content: center;
-  }
-  .main-item_tag {
-    padding-left: 80px;
-  }
-  .main-item_second {
-    padding-left: 80px;
-  }
-
-
+  .header-nav_list>li:first-of-type{
+    margin-right: auto;
+}
+  .btn{
+  width:40%;
+  height:200px;
+  display: flex;
+  margin:50px;
+  float: left;
+  display: block;
+  font-weight:bold;
+  font-size:20px;
+}
+.btn-start1{
+  opacity: 0.5;
+}
     </style>
-</head>
+    
+
 <body>
-  <div class="main-item">
+<head>
+  <nav class="header-nav">
+    <ul class="header-nav_list">
+    <li class="header-nav_item">Atte</li>
+    <li class="header-nav_item"><a href="{{route('work_in')}}">ホーム</a></li>
+      <li class="header-nav_item"><a href="{{route('work_in')}}">日付一覧</a></li>
+      <li class="header-nav_item"><a href="{{route('work_in')}}">ログアウト</a></li>
+    </ul>
+  </nav>
+
+
+  <button type="submit" class="btn btn-start1">勤務開始</button>
         <!-- --------勤務終了---------- -->
         <div class="main-item_tag">
       <form action="/work_out" method="POST">
@@ -55,11 +72,11 @@
       </form>
     </div>
 
-       <div class="main-item_second">
+
       <form action="/break_in" method="POST">
         @csrf
         <button type="submit" class="btn btn-start">休憩開始</button>
         <input type='hidden' id="brake_id" name="break_in" value="{{'break_in'}}">
       </form>
-    </div>
-  </div>
+      <button type="submit" class="btn btn-start1">休憩終了</button>
+

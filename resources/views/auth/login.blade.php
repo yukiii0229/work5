@@ -1,6 +1,28 @@
 <x-guest-layout>
+<style>
+    h1{
+       font-weight:bold;
+       font-size:20px;
+    }
+    .ml-3{
+        background-color:blue;
+    }
+    .ttl{
+        font-size:30px;
+        margin-left:10px;
+    }
+    .sab-ttl{
+        margin-left:50%;
+        font-size:20px;
+    }
+</style>
+<head>
+        <h3 class="ttl">Atte</h3>
+    </head>
     <x-auth-card>
+        
         <x-slot name="logo">
+        <h1>ログイン</h1>
 
         </x-slot>
 
@@ -38,11 +60,12 @@
                 </label>
             </div>
 
+
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('パスワードお忘れの方はこちら') }}
-                    </a>
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
+                    {{ __('会員登録はこちら') }}
+                </a>
                 @endif
 
                 <x-button class="ml-3">
@@ -51,4 +74,7 @@
             </div>
         </form>
     </x-auth-card>
+    <footer>
+        <h4 class="sab-ttl">Atte.inc</h4>
+    </footer>
 </x-guest-layout>

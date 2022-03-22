@@ -1,19 +1,33 @@
 <x-guest-layout>
 <style>
     h1{
-       
+       font-weight:bold;
+       font-size:20px;
     }
-
+    .ml-4{
+        background-color:blue;
+    }
+    .ttl{
+        font-size:30px;
+        margin-left:10px;
+    }
+    .sab-ttl{
+        margin-left:50%;
+        font-size:20px;
+    }
 </style>
+    <head>
+        <h3 class="ttl">Atte</h3>
+    </head>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-            </a>
+            <h1>会員登録</h1>
         </x-slot>
+
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <h1>会員登録</h1>
+
 
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -55,6 +69,7 @@
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('すでにログインしたことがある方') }}
                 </a>
+                
 
                 <x-button class="ml-4">
                     {{ __('登録') }}
@@ -62,4 +77,7 @@
             </div>
         </form>
     </x-auth-card>
+    <footer>
+        <h4 class="sab-ttl">Atte.inc</h4>
+    </footer>
 </x-guest-layout>

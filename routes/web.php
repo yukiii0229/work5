@@ -16,7 +16,7 @@ require __DIR__.'/auth.php';
 Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/', function () {
-    return view('auth.register');  // 変更：welcome → top
+    return view('top');  // 変更：welcome → top
     });
 
 //打刻ページ

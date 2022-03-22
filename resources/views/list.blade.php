@@ -12,6 +12,7 @@
     display: flex;
     justify-content: flex-end;
     list-style: none;
+    font-size:20px;
   }
   .header-nav_item {
     padding-right: 15px;
@@ -30,6 +31,9 @@
     text-align: center;
     padding: 10px 0;
   }
+  .header-nav_list>li:first-of-type{
+    margin-right: auto;
+}
 </style>
 
 <!--views/layouts/baseベース--->
@@ -37,7 +41,9 @@
 
   <nav class="header-nav">
     <ul class="header-nav_list">
-
+    <li class="header-nav_item">Atte</li>
+    <li class="header-nav_item"><a href="/work">ホーム</a></li>
+      <li class="header-nav_item"><a href="/list">日付一覧</a></li>
       <li class="header-nav_item"><a href="{{route('logout')}}">ログアウト</a></li>
     </ul>
   </nav>
