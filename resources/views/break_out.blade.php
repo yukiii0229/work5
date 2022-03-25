@@ -24,9 +24,7 @@
   .main-item_tag {
     padding-left: 80px;
   }
-  .main-item_second {
-    padding-left: 80px;
-  }
+
   .header-nav_list>li:first-of-type{
     margin-right: auto;
   }

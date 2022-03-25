@@ -16,9 +16,11 @@ require __DIR__.'/auth.php';
 Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/', function () {
-    return view('top');  // 変更：welcome → top
+    return view('auth.register');  
     });
-
+    // Route::middleware(['auth','can:大田有紀奈'])->group(function(){
+    //     Route::get('/admin','ListController@index');
+    // });
 //打刻ページ
 
 Route::GET('/work', [WorkController::class, 'index'])->middleware('auth');

@@ -58,7 +58,7 @@
     </tr>
 
     <tr>
-        <td>{{ $dete->name }}</td>
+        <td>{{ $date->name }}</td>
         <td>{{ $work->work_in}}</td>
         <td>{{ $work->work_out}}</td>
         <td></td>

@@ -47,7 +47,9 @@
   font-weight:bold;
   font-size:20px;
 }
-
+.btn-start1{
+  opacity: 0.5;
+}
 
 
     </style>
@@ -77,9 +79,9 @@
         <button type="submit" class="btn btn-start">勤務開始</button>
         <input type='hidden' id="user_id" name="work_in" value="{{'work_in'}}">
       </form>
-      <button type="submit" class="btn btn_end">勤務終了</button>
-      <button type="submit" class="btn btn-start">休憩開始</button>
-      <button type="submit" class="btn btn-start">休憩終了</button>
+      <button type="submit" class="btn btn-start1">勤務終了</button>
+      <button type="submit" class="btn btn-start1">休憩開始</button>
+      <button type="submit" class="btn btn-start1">休憩終了</button>
     </div>
 
 
