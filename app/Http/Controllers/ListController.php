@@ -72,9 +72,10 @@ class ListController extends Controller
         $date = Auth::user();;
         $work = work::all()->first();
         $rest = rest::all()->first();
-
+        // $total = rest::all(){"total_rest":"1:00", "total_work": "8:00"}
 
         return view ('list')->with(['date'=>$date])->with(['work'=>$work])->with(['rest'=>$rest]);
+        // ->with(['total'=>$total]);
     }
     
 }
