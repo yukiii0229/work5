@@ -98,7 +98,6 @@ class WorkController extends Controller
     $break_in = rest::create([
         'work_id' => $work->id,
         'rest_in' => Carbon::now(),
-        'rest_out' => null,
     ]);
 
     return redirect('break_out');
@@ -112,9 +111,8 @@ class WorkController extends Controller
 
     public function break_out2(Request $request)
     {
-    // $rest_id = rest::id();
     $break = Auth::user();
-    $break_out = rest::where('work_id', $break->id)->latest();
+    $break_out = rest::where('work_id', $break->id)->latest()->first();
     $break_out->update([
         'rest_out' => Carbon::now()
         ]);
