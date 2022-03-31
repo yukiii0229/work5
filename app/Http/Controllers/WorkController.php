@@ -27,11 +27,7 @@ class WorkController extends Controller
   {
       
     $user = Auth::user();
-    
-
-
     $oldTimestamp = work::where('user_id', $user->id)->latest()->first();
-    
         if ($oldTimestamp) {
             $oldTimeStampStart= new Carbon($oldTimestamp->work_in);
             $oldTimestampDay = $oldTimeStampStart->startOfDay();
@@ -46,6 +42,7 @@ class WorkController extends Controller
         if (($oldTimestamp)&&($oldTimestampDay == $newTimestampDay) && (empty($oldTimestamp->work_out))){
             return redirect()->back()->with('error', 'すでに出勤打刻がされています');
              }
+             
         $timestamp = work::create([
             'user_id' => $user->id,
             'work_in' => Carbon::now(), //現在時刻
@@ -84,7 +81,8 @@ class WorkController extends Controller
     }
     public function work_end()
     {
-        return view('work_end');
+        $date = Auth::user();
+        return view('work_end',['date' => $date]);
     }
 
 

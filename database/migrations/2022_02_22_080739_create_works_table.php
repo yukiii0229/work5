@@ -19,6 +19,7 @@ class CreateWorksTable extends Migration
             $table->timestamp('work_in')->nullable();
             $table->timestamp('work_out')->nullable();
             $table->foreignId('user_id')->constrained('users');
+            $table->time("work_time")->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

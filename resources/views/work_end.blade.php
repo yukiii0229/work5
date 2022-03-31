@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <style>
-        .header {
-    background: #FFFFFF;
-  }
+.back{
+  background-color:#FFFFFF;
+}
   .header-nav {
     display: block;
+
   }
   .header-nav_list {
     display: flex;
@@ -19,6 +20,9 @@
   .header-nav_list>li:first-of-type{
     margin-right: auto;
   }
+  .end{
+    margin:50px 100px;
+  }
 
     </style>
 <head>
@@ -28,6 +32,7 @@
     <title>Document</title>
 </head>
 <body>
+
 <nav class="header-nav">
     <ul class="header-nav_list">
     <li class="header-nav_item">Atte</li>
@@ -36,6 +41,8 @@
       <li class="header-nav_item"><a href="{{route('logout')}}">ログアウト</a></li>
     </ul>
   </nav>
-    <h1 class = "end">お疲れ様です</h1>
+  <div class="back">
+    <h1 class = "end">{{$date -> name}}さん、お疲れ様です</h1>
+</div>
 </body>
 </html>

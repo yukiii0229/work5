@@ -34,6 +34,10 @@
   .header-nav_list>li:first-of-type{
     margin-right: auto;
 }
+svg.w-5.h-5 {  /*paginateメソッドの矢印の大きさ調整のために追加*/
+    width: 30px;
+    height: 30px;
+    }
 </style>
 
 <!--views/layouts/baseベース--->
@@ -51,21 +55,27 @@
 <table>
     <tr>
         <th>名前</th>
+        <th>日付</th>
         <th>勤務開始</th>
         <th>勤務終了</th>
         <th>休憩時間</th>
-        <th>勤務時間</th>
+       <th>勤務時間</th>
     </tr>
+    @foreach ($items as $item)
+    @foreach ($users as $user)
 
     <tr>
-        <td>{{ $date->name }}</td>
-        <td>{{ $work->work_in}}</td>
-        <td>{{ $work->work_out}}</td>
+        <td>{{ $user->name}}</td>
+        <td>{{ $item->date}}</td>
+        <td>{{ $item->work_in}}</td>
+        <td>{{ $item->work_out}}</td>
         <td></td>
         <td></td>
     </tr>
-
+    @endforeach
+    @endforeach
 </table>
+{{ $items->links() }}
 
 
 

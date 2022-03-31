@@ -6,7 +6,10 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ListController;
 
 
-
+Route::get('/', function () {
+    return view('auth.register');  
+    });
+    
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -15,9 +18,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/logout', [LogoutController::class, 'logout']);
 
-Route::get('/', function () {
-    return view('auth.register');  
-    });
+
     // Route::middleware(['auth','can:大田有紀奈'])->group(function(){
     //     Route::get('/admin','ListController@index');
     // });

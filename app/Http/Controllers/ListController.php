@@ -15,67 +15,24 @@ class ListController extends Controller
 {
     public function create(Request $request)
     {
-        // $break = Auth::user();
-        // $dete = Auth::user();;
-        // $work = work::all()->first();
-        // $rest = rest::all()->first();
+        $items = DB::select('select * from works');
+        $users = DB::select('select * from users');
+        $items = work::Paginate(2);
 
+        $fromTime = strtotime("2021-01-21 06:00:00"); 
+        $toTime = strtotime("2021-01-22 05:00:00"); 
+        // 2つの異なる日付
+        $fromTime = strtotime("2021-01-21 06:00:00"); 
+        $toTime = strtotime("2021-01-22 05:00:00"); 
+        // strtotimeを使って差分
+        $diff = $toTime - $fromTime;
+        // 差分を日付に戻す
+        $diffTime = date("H:i:s", $diff);
+        // 23:00:00が出力される
+        echo $diffTime;
 
-        // $rest_time = DB::table('works');
-        // $DATE = date("Y-m-d");
-        // $work_in = $DATE."work_in";
-        // $work_out = $DATE."work_out";
-        // $work_time = (strtotime($work_out) - strtotime($work_in))/60;
-        // 現在認証しているユーザーを取得
-            $user = Auth::user();
-            $date = $request['date'];
-    
-            
-            //stamp_dateは今日の日付
-            // $work_date = work::select('date')->get();
-    
-    
-            
-    
-            // $rests = rest::select('work_id');
-            
-            // //その日の日付だけの合計の休憩時間を取得（表示する）
-            // $rest_time = DB::table('rests')
-            //     ->where('work_id', $user->id)
-            //     ->where('updated_at','like', "$date%")//（updated_at）の％で(日付のみ)前方一致//likeはカラムの文字列検索ができる
-            //     ->sum('rest_time');
-
-            //     $seconds = $rest_time % 60;
-            //     $seconds=sprintf('%02d', $seconds);//0埋め00:00:00
-            //     //分
-            //     $difMinutes = ($rest_time - ($rest_time % 60)) / 60;
-            //     $minutes = $difMinutes % 60;
-            //     $minutes = sprintf('%02d', $minutes);//0埋め00:00:00
-            //     //時
-            //     $difHours = ($difMinutes - ($difMinutes % 60)) / 60;
-            //     $hours = $difHours;
-            //     $hours=sprintf('%02d',$hours);//0埋め00:00:00]
-
-            //     $users = work::Join('users', 'work.user_id', 'users.id')
-            //     ->leftJoinsub($rests, 'rests', function ($join) {
-            //         $join->on('work.id', '=', 'rests.work_id');
-            //     })
-            // ->where('work_date', $date)
-            // ->get();
-    
-    
-            // //$items = list::Paginate(5);
-            // $items = list::orderBy('updated_at', 'asc')->Paginate(5);
-            
-            // return view('auth.datepege', compact('users', 'date','stamp_date','rest_time', 'minutes', 'seconds','hours','items'));
-
-        $date = Auth::user();;
-        $work = work::all()->first();
-        $rest = rest::all()->first();
-        // $total = rest::all(){"total_rest":"1:00", "total_work": "8:00"}
-
-        return view ('list')->with(['date'=>$date])->with(['work'=>$work])->with(['rest'=>$rest]);
-        // ->with(['total'=>$total]);
+        return view('list', ['items' => $items],['users' => $users],['diffTime' => $diffTime]);
     }
-    
+
+
 }
