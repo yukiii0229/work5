@@ -18,7 +18,8 @@ class CreateRestsTable extends Migration
             $table->timestamp('rest_in')->nullable(false);
             $table->timestamp('rest_out')->nullable();
             $table->foreignId('work_id')->constrained('works');
-            $table->time("rest_time")->nullable();
+            $table->foreignId('user_id')->constrained('users');
+            $table->datetime("rest_time")->nullable();
             $table->timestamp('created_at')->useCurrent()->nullable();
             $table->timestamp('updated_at')->useCurrent()->nullable();
         });

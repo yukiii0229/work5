@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\rest;
@@ -88,12 +89,13 @@ class WorkController extends Controller
 
     public function break_in(Request $request)
     {
-
-    $break = Auth::user();
     $user= Auth::user();
-    $work =work::where('user_id', $user->id)
-    ->where('date', Carbon::today())->latest()->first();
+    $work = work::where('user_id', $user->id)->latest()->first();
+
+    // $work =work::where('user_id', $user->id)
+    // ->where('date', Carbon::today())->latest()->first();
     $break_in = rest::create([
+        'user_id' => $user->id,
         'work_id' => $work->id,
         'rest_in' => Carbon::now(),
     ]);
@@ -109,12 +111,35 @@ class WorkController extends Controller
 
     public function break_out2(Request $request)
     {
-    $break = Auth::user();
-    $break_out = rest::where('work_id', $break->id)->latest()->first();
-    $break_out->update([
-        'rest_out' => Carbon::now()
-        ]);
+        Log::info('休憩終了最初');
+    $user = Auth::user();
+    $today = Carbon::today()->format("Y-m-d");
     
+    $work = work::where('user_id', $user->id)->where('date',$today)->latest()->first();
+    $timestamp = rest::where('user_id', $user->id)->where('work_id', $work->id)->latest()->first();
+    $in = $timestamp->rest_in;
+    if (!empty($timestamp->punchOut)) {
+        return redirect()->back()->with('error', '既に休憩終了の打刻がされているか、休憩開始が打刻されていません。');
+    }
+    Log::info('休憩終了真ん中');
+    Log::info($timestamp->rest_in);
+    $timestamp->update([
+        'rest_in' => $in,
+        'rest_out' => Carbon::now()
+    ]);
+
+
+    // $data = rest::select(DB::raw('timediff( rest_out,rest_in) as resttime'))->where('id', $timestamp->id)->value('resttime');
+    // $restdata = rest::select(DB::raw('rest_time'))->where('id', $timestamp->work_id)->value('rest_time');
+    // Log::info('休憩終了と中');
+    // $sum = DB::select('select addtime(:restdata, :data) as sum', ['restdata' => $restdata, 'data' => $data]);
+
+
+    // $attendance->update([
+    //     'rest_time' => $sum[0]->sum
+    // ]);
+    Log::info('休憩終了最後');
+
     return redirect('work_in');
 }
 
